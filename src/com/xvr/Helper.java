@@ -1,11 +1,15 @@
 package com.xvr;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Helper {
+    /*
+        treemap: key - nameClass, value - msec;
+        valueForSort: help structure for sorting
 
-    HashMap <Long,String> hashMap = new HashMap<>();
+     */
+    private TreeMap<String,Long> ClassDateCreate = new TreeMap<>();
+    private List<Long> valueForSort = new ArrayList<>();
     private String[] nameClass;
     private long[] varMs;
 
@@ -14,15 +18,47 @@ public class Helper {
         this.varMs = varMs1;
     }
 
-    public HashMap<Long,String> init(){
+    public void init(){
         for (int i = 0; i<nameClass.length; i++){
-            hashMap.put(varMs[i],nameClass[i]);
+            ClassDateCreate.put(nameClass[i],varMs[i]);
         }
-        hashMap.
-        for (Map.Entry<Long, String> value: hashMap.entrySet()){
-            System.out.println(value.getKey() + " " + value.getValue());
+        System.out.println(ClassDateCreate);
+
+    }
+
+    public String[] search(String varSearchStr){
+
+
+        //findClasses contains find elements only. Sorted by nameClass.
+        // valueForSort contains value in msec.
+        TreeMap<String,Long> findClasses = new TreeMap<>();
+        for (Map.Entry<String,Long> var3 : ClassDateCreate.entrySet()){
+            if (var3.getKey().startsWith(varSearchStr)){
+                findClasses.put(var3.getKey(),var3.getValue());
+                valueForSort.add(var3.getValue());
+
+            }
         }
 
-        return hashMap;
+        System.out.println(findClasses);
+        Collections.sort(valueForSort);
+        // for final return string[]
+        String[] finalFindClass = new String[valueForSort.size()];
+
+        for (int i = 0; i< valueForSort.size(); i++){
+            //return array must be 12
+            if (i==12){
+                break;
+            }
+            for (Map.Entry<String,Long> var7: findClasses.entrySet()){
+                if (valueForSort.get(i).equals(var7.getValue())){
+                    finalFindClass[i]=var7.getKey();
+                }
+            }
+        }
+
+        System.out.println(valueForSort);
+
+        return finalFindClass;
     }
 }

@@ -1,8 +1,8 @@
 package com.xvr;
 
-import java.util.HashMap;
-
 public class Searcher implements ISearcher {
+
+    private Helper helper;
 
     public Searcher() {
     }
@@ -10,7 +10,7 @@ public class Searcher implements ISearcher {
     @Override
     public void refresh(String[] classNames, long[] modificationDates) {
         try {
-            Helper helper = new Helper(classNames, modificationDates);
+            helper = new Helper(classNames, modificationDates);
             helper.init();
         }catch (IllegalArgumentException e){
             System.out.println(e.fillInStackTrace());
@@ -20,6 +20,11 @@ public class Searcher implements ISearcher {
 
     @Override
     public String[] guess(String start) {
-        return new String[0];
+
+        String[] var = helper.search(start);
+        for(String str: var){
+            System.out.println(str);
+        }
+        return var;
     }
 }
