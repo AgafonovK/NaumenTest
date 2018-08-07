@@ -76,7 +76,7 @@ class SearcherTest {
         searcher.refresh(classNames.toArray(new String[0]), classDates);
         final long end = System.currentTimeMillis() - start;
         System.out.println("Time to refresh = " + end + "ms");
-        assertTrue(end < 300);
+        assertTrue(end < 1000);
 
         classes = new ArrayList<>(classNames.size());
         for (int i = 0; i < classNames.size(); i++) {
@@ -152,6 +152,7 @@ class SearcherTest {
 //    sort result   =    888012 nanos
 //    map to string =     11085 nanos
 //    @Disabled
+
     @RepeatedTest(5)
     void guessLoop() {
         List<Long> times = new ArrayList<>(NUM_OF_LAUNCH);

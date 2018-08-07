@@ -40,25 +40,29 @@ public class Helper {
             }
         }
 
-        System.out.println(findClasses);
+        System.out.println("найденные классы: " + findClasses);
+        System.out.println("для сортировки: " + valueForSort);
         Collections.sort(valueForSort);
         // for final return string[]
-        String[] finalFindClass = new String[valueForSort.size()];
+        String[] finalFindClass = new String[12];
 
+        System.out.println(valueForSort.size());
         for (int i = 0; i< valueForSort.size(); i++){
             //return array must be 12
             if (i==12){
                 break;
             }
+
             for (Map.Entry<String,Long> var7: findClasses.entrySet()){
                 if (valueForSort.get(i).equals(var7.getValue())){
                     finalFindClass[i]=var7.getKey();
+                 //  System.out.println(finalFindClass[i] + " " + var7.getKey());
                 }
             }
         }
-
-        System.out.println(valueForSort);
-
+        for (String str: finalFindClass) {
+            System.out.println("отсортированный: " + str);
+        }
         return finalFindClass;
     }
 }
