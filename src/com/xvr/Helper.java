@@ -51,6 +51,7 @@ public class Helper {
             //return array must be 12
             if (i==12){
                 break;
+
             }
 
             for (Map.Entry<String,Long> var7: findClasses.entrySet()){
